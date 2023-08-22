@@ -51,13 +51,68 @@ The full form of an ARM is an advanced reduced instruction set computer (RISC) m
 
 
 ## STM 32 CUBE PROGRAM :
+```
+#include "main.h"
+#include "stdbool.h"
+bool buttonstatus;
 
+void pushbutton();
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+
+ 
+int main(void)
+{
+  
+  HAL_Init();
+
+
+  SystemClock_Config();
+
+/
+  MX_GPIO_Init();
+ 
+  while (1)
+  {
+	 pushbutton();
+
+ 
+  }
+  
+}
+
+void pushbutton()
+{
+	 buttonstatus= HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
+	 if(buttonstatus==0)
+	 {
+		 HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+		 HAL_Delay(500);
+		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+		  HAL_Delay(500);
+
+
+
+
+	 }
+	 else
+	 {
+		 HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+
+
+	 }
+}
+```
 
 
 ## Output  :
  
  
- 
+ ![image](https://github.com/rohitgunasekaran/EXPERIMENT--02-INTEFACING-A-DIGITAL-INPUT-TO-ARM-DEVELOPMENT-BOARD/assets/119404546/bcb03ce8-cd2c-4edc-ba2d-4758b6195b69)
+
+![image](https://github.com/rohitgunasekaran/EXPERIMENT--02-INTEFACING-A-DIGITAL-INPUT-TO-ARM-DEVELOPMENT-BOARD/assets/119404546/05567e39-a86b-4c88-8aa1-c2f7b891a0bd)
+
  
 ## Result :
 Interfacing a digital Input (Pushbutton ) with ARM microcontroller based IOT development is executed and the results are verified.
